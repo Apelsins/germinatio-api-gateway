@@ -1,0 +1,45 @@
+server:
+  port: 8081
+
+#spring:
+#  application.name: germinatio-api-gateway
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: login-app
+#            authorization-grant-type: authorization_code
+#            scope: openid
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8484/realms/SpringBootKeycloak
+#            user-name-attribute: preferred_username
+#      resourceserver:
+#        jwt:
+#          issuer-uri:
+#            http://localhost:8484/realms/SpringBootKeycloak
+
+spring:
+  main:
+    web-application-type: reactive
+
+keycloak:
+  realm: ${REALM:SpringBootKeycloak}
+  auth-server-url: http://localhost:8484/auth
+  ssl-required: external
+  resource: ${CLIENT_ID:login-app}
+  use-resource-role-mappings: true
+  bearer-only: true
+  credentials:
+    secret: ${CLIENT_SECRETE:Ed0dlbw2xVvu8E7pvX3zNeFDRSfHePeS}
+  enabled: false
+env:
+  keycloak:
+    host: ${KEYCLOAK_HOST:http://localhost:8484}
+    realm : ${KEYCLOAK_REALM:SpringBootKeycloak}
+
+
+#logging:
+#  level:
+#    root: DEBUG
